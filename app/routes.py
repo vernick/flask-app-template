@@ -1,8 +1,12 @@
 from flask import Blueprint, request, jsonify
 
-webhook = Blueprint('webhook', __name__)
+main = Blueprint('main', __name__)
 
-@webhook.route('/webhook', methods=['POST'])
+@main.route('/', methods=['GET'])
+def home():
+    return "Welcome to the Flask app!", 200
+
+@main.route('/webhook', methods=['POST'])
 def handle_webhook():
     # Extract data from the incoming request
     data = request.json
